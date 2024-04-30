@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+{% block title %} 
+<title>All Courses</title>
+{% endblock title %}
+
+{% block body %}
+  <h3 class="text-center">{{ title }}</h3>
+<div class="container">
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% if courses %}
+    {% for course in courses %}
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{course.course_title}}</h5>
+          <p class="card-text">{{course.course_description|slice:":150"}}...</p>
+          <p class="card-text d-inline"><strong>Price:</strong> ${{course.course_amount}}</p>
+          <p class="card-text d-inline float-end"><strong>Duration:</strong> ${{course.course_duration}}</p>
+        </div>
+        <div class="card-footer bg-transparent border-0 d-flex justify-content-between">
+          <a href="{% url "course-view" course.course_id %}" class="btn btn-outline-primary">View</a>
+          <a href="{% url "course-view" course.course_id %}" class="btn btn-success">Checkout</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="container d-flex justify-content-center align-items-center" style="height: 300px;">
+      <h3 class="text-center">Course Not Found for You</h3>
+  </div>
+  
+ 
+    {% endif %}
+
+  
+  </div>
+</div>
+
+{% endblock body %}

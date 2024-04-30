@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+{% block title %} All Invoices{% endblock title %}
+{% block financeInvoicesActive %} active {% endblock financeInvoicesActive %}
+
+{% block body %}  
+<div class="container">
+  <h2 class="text-center mb-4">Invoices</h2>
+  <div class="table-responsive">
+    {% if invoices %}
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">Reference</th>
+          <th class="text-center">Type</th>
+          <th class="text-center">Amount</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Due Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for invoice in invoices %}
+        <tr>
+          <td class="text-center">{{invoice.reference}}</td>
+          <td class="text-center">{{invoice.type}}</td>
+          <td class="text-center">${{invoice.amount}}</td>
+          {% if "PAID" in invoice.status  %}
+          <td class="text-center text-success">{{invoice.status}}</td>
+          {% else %}
+          <td class="text-center text-danger">{{invoice.status}}</td>
+          {% endif %}
+          <td class="text-center">{{invoice.dueDate}}</td>
+        </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
+    {% else %}
+    <div class="container d-flex justify-content-center align-items-center" style="height: 300px;">
+      <h3 class="text-center">Invoices Not Found for You</h3>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock body %}

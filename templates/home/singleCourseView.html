@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% block title %}
+<title>Course View </title>
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+  <div class="card">
+    {% if course %}
+    <div class="card-body">
+      <h5 class="card-title text-center">{{course.course_title}}</h5>
+      <p class="card-text">{{course.course_description}}</p>
+
+      <p class="card-text"><strong>Duration:</strong> {{course.course_duration}} </p>
+      <p class="card-text"><strong>Price:</strong> ${{course.course_amount}}</p>
+    </div>
+    <div class="card-footer bg-transparent border-0">
+      {% if enrollment %}
+      <a href="{% url "cancel-enrollment" course.course_id %}" class="btn btn-danger mb-2 w-100">Cancel Enrollment</a>
+      {% else %}
+      <a href="{% url 'enroll-course' course.course_id %}" class="btn btn-primary mb-2 w-100">Enroll Now</a>
+      {% endif %}      
+    </div>
+    {% else %}
+    <h4 class="text-center">Course not rendered from server</h4>
+    {% endif %}
+  </div>
+</div>
+{% endblock body %}

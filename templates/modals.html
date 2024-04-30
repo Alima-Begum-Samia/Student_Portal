@@ -1,0 +1,149 @@
+
+<!-- Logout Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="logoutModal">Logout</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4>Do you really want to logout?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="{% url "logout" %}" type="button" class="btn btn-danger">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Signup Modal -->
+<div class="modal fade" id="modalSignup" tabindex="-1" aria-labelledby="modalSignup" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Sign up for free</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-5 pt-0">
+        <form class="" action="{% url "register" %}" method="post">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-3" name="email" id="signupEmail" placeholder="name@example.com" required>
+            <label for="signupEmail">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-3" name="username" id="signupUsername" placeholder="name@example.com" required>
+            <label for="signupUsername">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-3" name="password" id="signupPassword" placeholder="Password" required>
+            <label for="signupPassword">Password</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-3" name="password2" id="signupConfirmPassword" placeholder="Password" required>
+            <label for="signupConfirmPassword">Confirm Password</label>
+          </div>
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign up</button>
+          <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modalSignIn Modal -->
+<div class="modal fade" id="modalSignIn" tabindex="-1" aria-labelledby="modalSignIn" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h3 class="fw-bold mb-0 fs-2">Login into Your Account</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-5 pt-0">
+        <form class="" action="{% url "login" %}" method="post">
+          <div class="form-floating mb-3">
+            <input name="username" type="text" class="form-control rounded-3" id="signupUsername" placeholder="name@example.com" required>
+            <label for="signupUsername">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input name="password" type="password" class="form-control rounded-3" id="signupPassword" placeholder="Password" required>
+            <label for="signupPassword">Password</label>
+          </div>
+          
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Login</button>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% if user.is_authenticated %}
+<!--  updateProfileModal Modal -->
+<div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="updateProfileModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h3 class="fw-bold mb-0 fs-2">Update Your Profile</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-5 pt-0">
+        <form class="" action="{% url "update-profile" %}" method="post">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-3" name="email" id="UpdateProfileEmail" placeholder="name@example.com" value="{{user.email}}">
+            <label for="UpdateProfileEmail">Email</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-3" name="username" id="loginUsername" placeholder="name@example.com" value="{{user.username}}">
+            <label for="loginUsername">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-3" name="fName" id="updateFirstName" placeholder="name@example.com" value="{{user.first_name}}">
+            <label for="updateFirstName">First Name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-3" name="lName" id="updateLastName" placeholder="name@example.com" value="{{user.last_name}}">
+            <label for="updateLastName">Last Name</label>
+          </div>
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-primary" type="submit">Update Info</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- updatePasswordModal Modal -->
+<div class="modal fade" id="updatePasswordModal" tabindex="-1" aria-labelledby="updatePasswordModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h3 class="fw-bold mb-0 fs-2">Update Your Password</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-5 pt-0">
+        <form class="" action="{% url "update-password" %}" method="post">
+          <div class="form-floating mb-3">
+            <input name="currentPassword" type="password" class="form-control rounded-3" id="currentPassword" placeholder="name@example.com" required>
+            <label for="currentPassword">Current Password</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input name="newPassword" type="password" class="form-control rounded-3" id="newPassword" placeholder="Password" required>
+            <label for="newPassword">New Password</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input name="confirmNewPassword" type="password" class="form-control rounded-3" id="confirmNewPassword" placeholder="Password"  required>
+            <label for="confirmNewPassword">Confirm New Password</label>
+          </div>
+          
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-danger" type="submit">Update Password</button>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

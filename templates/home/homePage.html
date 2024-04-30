@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% block title %} <title>Home </title>{% endblock title %}
+{% block homeActive %} active {% endblock homeActive %}
+{% block body %}
+<section class="">
+  <div class="p-3 mb-4 rounded text-body-emphasis bg-body-secondary">
+    <div class="px-0">
+      <h2 class="fst-italic">Welcome to Student Portal</h2>
+      <p class="lead my-3">Welcome to Your Student Portal, Let's explore the things that helps you.</p>
+
+    </div>
+  </div>
+
+
+  <div class="row g-5">
+    <div class="">
+
+      <article class="blog-post">
+        <h3>Requirements to Continue with your portal</h3>
+        <p>To continue engaging with your student portal you must have to ensure somethings.</p>
+        <ul>
+          <li>Your <strong> Finance Module </strong>is Running <code
+              class="language-plaintext highlighter-rouge">&lt;<a href="http://localhost:8081/portal" target="_blank">Check here</a>&gt;</code>.
+          </li>
+          <li>Your <strong> Library Module </strong>is Running <code
+              class="language-plaintext highlighter-rouge">&lt;<a href="http://localhost:80/" target="_blank">Check here</a>&gt;</code>.
+          </li>
+        </ul>
+        <p>Start these both modules and then continue.</p>
+        <h3>What you can do here?</h3>
+        <ul>
+          <li>You can register into your portals.
+          </li>
+          <li>Check all courses, offered by the organization</li>
+          <li>You can enroll in various courses.</li>
+          <li>Also you can find all of your invoices here.</li>
+          <li>You can check your graduation status </li>
+        </ul>
+      </article>
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock body %}

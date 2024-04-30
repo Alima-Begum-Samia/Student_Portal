@@ -1,0 +1,47 @@
+          Django Project Setup Instructions
+
+Prerequisites:
+- Python installed on your system
+- Docker installed & Docker Compose installed
+- Git installed
+
+
+Other Module Clone
+ - Clone finance Module from github (https://github.com/tvergilio/finance)
+ - Clone CESBooks Module from github (https://github.com/tvergilio/CESBooks)
+
+
+Run the other Modules
+1. Navigate to the finance directory
+  - Run: docker-compose up -d
+2. Navigate to the CESBooks directory
+  - Run: docker-compose up -d
+
+
+Setup Instructions:
+1. Navigate to the student_portal (this project) directory.
+
+
+2. Install project dependencies:
+   - Ensure you have the `requirements.txt` file in the project directory.
+   - Install dependencies using pip:
+     - Run: pip install -r requirements.txt
+
+
+Database Setup:
+1. Make migrations for database changes:
+   - Run: python manage.py makemigrations
+2. Apply migrations to the database:
+   - Run: python manage.py migrate
+
+
+Run the Test Cases:
+1. Start the test cases by following command:
+   - Run: python manage.py test home
+
+
+Run the Server:
+1. Start the Django development server:
+   - Run: python manage.py runserver
+2. Open your web browser and go to http://127.0.0.1:8000/
+

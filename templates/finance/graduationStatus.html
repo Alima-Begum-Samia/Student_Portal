@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+{% block title %} <title>Graduation Status</title>{% endblock title %}
+{% block graduationStatusActive %} active {% endblock graduationStatusActive %}
+{% block body %}
+<div class="container mt-5">
+  <div class="mb-4">
+    <p class="text-danger">You need to pay all of your outstanding invoices to become eligible for graduation.</p>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Graduation Status</h5>
+
+      <p class="card-text">Your current graduation status is:
+        {% if notEligible %}
+        <span class="text-danger">Not Eligible for Graduation</span></p>
+        {% else %}
+        <span class="text-success">Eligible for Graduation</span></p>
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

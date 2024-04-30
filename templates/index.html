@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block title %}{% endblock title %}
+  {% load static %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static "css/navbar.css" %}">
+  {% block head %}{% endblock head %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <!--Main Navigation-->
+<header>
+  <!-- Sidebar -->
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+
+      <div class="list-group list-group-flush mx-3 mt-5">
+        <a href="{% url "profile" %}" class="list-group-item list-group-item-action py-2 ripple {% block profileDashboardActive %}{% endblock profileDashboardActive %}" aria-current="true">
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Profile Dashboard</span>
+        </a>
+        <a href="{% url "home" %}" class="list-group-item list-group-item-action py-2 ripple {% block homeActive %}{% endblock homeActive %}">
+          <i class="fa-solid fa-house me-3"></i> <span>Home</span>
+        </a>
+        <a href="{% url "all-courses" %}" class="list-group-item list-group-item-action py-2 ripple {% if tab_name and  tab_name == "all_courses" %} active {% endif %}"><i
+            class="fa-solid fa-book me-3"></i><span>Offered Courses</span></a>
+        <a href="{% url "my-enrollments" %}" class="list-group-item list-group-item-action py-2 ripple {% if tab_name and  tab_name == "enrolled_courses" %} active {% endif %}"><i
+            class="fa-solid fa-bookmark me-3 "></i><span>My Enrollments</span></a>
+        <a href="{% url "invoices" %}" class="list-group-item list-group-item-action py-2 ripple {% block financeInvoicesActive %}{% endblock financeInvoicesActive %}">
+          <i class="fa-solid fa-file-invoice-dollar me-3 "></i><span>Finance Invoices</span>
+        </a>
+        <a href="{% url "library-info" %}" class="list-group-item list-group-item-action py-2 ripple  {% block libraryInfoActive %}{% endblock libraryInfoActive %}"><i
+            class="fa-solid fa-book-open-reader me-3"></i><span>Library Info</span></a>
+        <a href="{% url "graduation-status" %}" class="list-group-item list-group-item-action py-2 ripple {% block graduationStatusActive %}{% endblock graduationStatusActive %}"><i
+            class="fa-solid fa-graduation-cap me-3"></i><span>Graduation Status</span></a>
+      </div>
+
+    </div>
+  </nav>
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-collapse-init data-mdb-target="#sidebarMenu"
+        aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="/">
+       <h4 class='p-3'>Student Portal</h4>
+      </a>
+      <!-- Search form -->
+      <form class="d-none d-md-flex input-group w-auto my-auto" action="{% url "search-course" %}" method="POST">
+      {% csrf_token %}  
+        <input autocomplete="off" name="query" type="search" class="form-control rounded" placeholder="Find a Course..." style="width: 525px;" />
+        <button type="submit" class="input-group-text border-0"><i class="fas fa-search"></i></button>
+      </form>
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row me-3">
+        {% if user.is_authenticated %}
+        <li class="nav-item me-4">
+         <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+        </li>
+        {% else %}
+        <li class="nav-item me-4">
+         <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalSignup">Signup</button>
+       </li>
+       <li class="nav-item">
+         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSignIn">Login</button>
+       </li>
+        {% endif %}
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 58px;">
+  <div class="container pt-5"></div>
+
+  {% if messages %} {% for message in messages %}
+  <div
+    class="alert alert-{{ message.tags }} alert-dismissible fade show"
+    role="alert"
+  >
+  {{ message }}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  {% endfor %} {% endif %}
+  {% block body %}{% endblock body %}
+  
+
+</main>
+<!--Main layout-->
+  </div>
+
+  {% include "modals.html" %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+{% block js %}{% endblock js %}
+</body>
+</html>

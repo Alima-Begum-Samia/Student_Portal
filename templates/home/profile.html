@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block profileDashboardActive %} active {% endblock profileDashboardActive %}
+
+{% block body %}
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title text-center">You Profile Information</h5>
+      <div class="mb-3">
+        <strong>Email:</strong> {{user.email}}
+      </div>
+      <div class="mb-3">
+        <strong>Username:</strong> {{user.username}}
+      </div>
+      <div class="mb-3">
+        <strong>Full Name:</strong> {{user.first_name}} {{user.last_name}}
+      </div>
+      <div class="mb-3">
+        <strong>Student ID:</strong> {{user.user_id}}
+      </div>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateProfileModal">
+        Update Profile
+      </button>
+      <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#updatePasswordModal">
+        Update Password
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock body %}
